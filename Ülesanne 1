@@ -1,3 +1,8 @@
+/*
+Ülesanded
+1. Trükkida välja kõik kolmega jagunevad arvud vahemikus 1..100 
+*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
