@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ülesanded___nr_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // määran muutuja
+            int i;
+
+            // for tsüklisse 0 - 100(k.a)
+            for (i = 0; i <= 100; i++)
+            {
+                // ainult 3-ga jagunevadn numbrid
+                if (i % 3 == 0)
+                {
+                    // prindin konsooli
+                    Console.WriteLine(i);
+                } 
+            }
+        }
+    }
+}
