@@ -4,3 +4,64 @@
      Arvuta nende arvude summa ning min ja max väärtused. Trüki saadud tulemused ekraanile
 */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace Ülesanded___nr_2._1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // Welcome message
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("Sisestada arve. Lõpetamiseks ENTER");
+            Console.WriteLine("----------------------------------");
+
+            // creating a list
+            List<string> numbers = new List<string>();
+
+            // Start while loop until no more numbers are given
+            while (true)
+            {
+                // Reading user input and adding this to a variable
+                string line = Console.ReadLine();
+
+                // if no more user input is given break the while loop
+                if (string.IsNullOrEmpty(line))
+                    break;
+
+                // splitting the user input with space or new line and adding it to a array
+                string[] lineWords = line.Split(' ', '\t');
+
+                if (lineWords != null && lineWords.Length > 0)
+                    numbers.AddRange(lineWords);
+            }
+
+            // Converting a list from list of string to list of int
+            List<int> numbersInt = numbers.ConvertAll<int>(Convert.ToInt32);
+            
+            // Sum up numbers in list
+            int sum = numbersInt.Take(numbers.Count).Sum();
+
+            // End message
+            Console.WriteLine("   ");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Sisestasite {numbers.Count} numbrit.");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("Väikseim sisestatud number: " + numbers.Min());
+            Console.WriteLine("Suurim sisestatud number: " + numbers.Max());
+            Console.WriteLine("Sisestatud arvude summa: " + sum);
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("   ");
+
+            Console.ReadLine();
+
+        }
+    }
+}
