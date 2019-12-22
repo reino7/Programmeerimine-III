@@ -28,6 +28,8 @@ namespace Ülesanded___nr_1
                     Console.WriteLine(i);
                 } 
             }
+            // peale väljundit jääb programm ootama kasutaja sisendit
+            Console.ReadLine();
         }
     }
 }
