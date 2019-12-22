@@ -24,9 +24,68 @@ namespace Ülesanded___nr_3
             Random rnd = new Random();
             int randomNo = rnd.Next(1, 50);
 
-            Console.WriteLine(randomNo);
-            Console.ReadLine();
+            Console.WriteLine("Random no is " + randomNo);
 
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("Arva ära number 1 ja 50 vahemikus.");
+            Console.WriteLine("Sisesta number ja saad vastuse, kas läks täppi.");
+            Console.WriteLine("Lõpetamiseks tühi ENTER");
+            Console.WriteLine("-----------------------------------------------");
+
+            // counting tries
+            int tries = 0;
+
+            while (true)
+            {
+
+                // player input
+                string playerInput = Console.ReadLine();
+
+                // if no input then exit
+                if (string.IsNullOrEmpty(playerInput))
+                {
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.WriteLine("Kahju, et loobusid. Õige number on " + randomNo);
+                    Console.WriteLine("Proovisid arvata " + tries + " korda.");
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.ReadLine();
+                    break;
+                }
+
+                // convert player string input to int
+                int playerInputInt = Convert.ToInt32(playerInput);
+
+
+                if (randomNo > playerInputInt) // if randomNo is bigger
+                {
+                    ++tries; // counting tries + add one
+                    Console.WriteLine("Number on suurem!");
+
+                }
+                else if (randomNo < playerInputInt) // if randomNo is smaller
+                {
+                    ++tries; // counting tries + add one
+                    Console.WriteLine("Number on väiksem!");
+                }
+                else if (randomNo == playerInputInt) // if correct number is guessed
+                {
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.WriteLine("Palju õnne! Arvasid õige numbri, milleks oli " + randomNo);
+                    Console.WriteLine("Õige numbri arvamiseks proovisid " + tries + " korda.");
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.ReadLine();
+                    break;
+                }
+                else 
+                {
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.WriteLine("Kahju, et loobusid. Õige number on " + randomNo);
+                    Console.WriteLine("Proovisid arvata " + tries + " korda.");
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.ReadLine();
+                    break;
+                }
+            }
         }
     }
 }
