@@ -1,0 +1,7 @@
+/*
+  Ülesanded
+  4. Trips-traps-trull konsoolil. Esmalt trükitakse välja mänguväli (3 rida ja 3 veergu) ja 
+  siis palutakse sisestada esimese või teise mängija (kuvatakse kumma kord parasjagu on) 
+  poolt komaga eraldatud koordinaadid (1,3), millisele positsioonile oma märk kirjutada. 
+  Peab kontrollima, et sisestatud on korrektne ja peale seda uuesti välja trükkima
+*/
