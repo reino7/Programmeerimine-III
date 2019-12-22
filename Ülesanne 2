@@ -1,0 +1,6 @@
+/*
+  Ülesanded
+  2. Lase kasutajal sisestada arve kuni tühi string vastuseks tuleb (ehk ENTER ilma midagi kirjutamata). 
+     Arvuta nende arvude summa ning min ja max väärtused. Trüki saadud tulemused ekraanile
+*/
+
