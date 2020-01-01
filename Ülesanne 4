@@ -5,3 +5,233 @@
   poolt komaga eraldatud koordinaadid (1,3), millisele positsioonile oma märk kirjutada. 
   Peab kontrollima, et sisestatud on korrektne ja peale seda uuesti välja trükkima
 */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ülesanded___nr_4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            char player;
+            player = randomPlayerStart();
+
+            char[,] board = new char[4, 4];
+            Initialize(board);
+
+            int movesPlayed = 0;
+
+            // Game plays in while loop until player wins/loses/draws
+            while (true)
+            {
+                //Console.Clear();
+                Print(board);
+
+                Console.Write(player + ", sisesta valik kujul 1,3 (1 = rida; 3 = veerg): ");
+                string userInput = Console.ReadLine();
+                int row = Convert.ToInt32(userInput.Substring(0, 1));
+                int col = Convert.ToInt32(userInput.Substring(userInput.Length - 1));
+
+
+                // Kontrollid lisada:
+                // * kas sisestus on 1,2,3
+                // * kas valitud lahter on juba täis
+                
+                board[row, col] = player;
+
+                checkWin(player, board);
+
+                movesPlayed = checkDraw(movesPlayed, board);
+
+                player = ChangeTurn(player);
+
+            }
+        }
+
+        private static void checkIfFieldIsUsedMSG()
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine("*****************************");
+            Console.WriteLine("!!! LAHTER JUBA KASUTUSES !!!");
+            Console.WriteLine("*****************************");
+            Console.WriteLine(" ");
+        }
+
+        private static char randomPlayerStart()
+        {
+            char player;
+
+            // Create random starter X or O
+            Random rnd = new Random();
+            int randomXO = rnd.Next(0, 2);
+
+            if (randomXO == 0)
+            {
+                player = 'O';
+            }
+            else
+            {
+                player = 'X';
+            }
+
+            return player;
+        }
+
+        private static int checkDraw(int movesPlayed, char[,] board)
+        {
+            movesPlayed = movesPlayed + 1;
+
+            if (movesPlayed == 9)
+            {
+                Console.Clear();
+                Print(board);
+
+                Console.WriteLine(" ");
+                Console.WriteLine("********");
+                Console.WriteLine("* VIIK *");
+                Console.WriteLine("********");
+                Console.WriteLine(" ");
+                Console.ReadKey();
+            }
+
+            return movesPlayed;
+        }
+
+        private static void checkWin(char player, char[,] board)
+        {
+            // Check First row
+            if (player == board[1, 1] &&
+                player == board[1, 2] &&
+                player == board[1, 3])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+            // Check Second row
+            if (player == board[2, 1] &&
+                player == board[2, 2] &&
+                player == board[2, 3])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+            // Check Third row
+            if (player == board[3, 1] &&
+                player == board[3, 2] &&
+                player == board[3, 3])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+
+            // Check First column
+            if (player == board[1, 1] &&
+                player == board[2, 1] &&
+                player == board[3, 1])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+            // Check Second column
+            if (player == board[1, 2] &&
+                player == board[2, 2] &&
+                player == board[3, 2])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+            // Check Third column
+            if (player == board[1, 3] &&
+                player == board[2, 3] &&
+                player == board[3, 3])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+
+            // Check across board left2right
+            if (player == board[1, 1] &&
+                player == board[2, 2] &&
+                player == board[3, 3])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+            // Check across board right2left
+            if (player == board[1, 3] &&
+                player == board[2, 2] &&
+                player == board[3, 1])
+            {
+                Console.Clear();
+                Print(board);
+                winMSG(player);
+            }
+        }
+
+        private static void winMSG(char player)
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine("*******************");
+            Console.WriteLine("* " + player + " VÕITIS MÄNGU! *");
+            Console.WriteLine("*******************");
+            Console.WriteLine(" ");
+            Console.ReadKey();
+        }
+
+        private static char ChangeTurn(char currentPlayer)
+        {
+            if (currentPlayer == 'X')
+            {
+                return 'O';
+            }
+            else
+            {
+                return 'X';
+            }
+        }
+
+        private static void Initialize(char[,] board)
+        {
+            // setting emty spaces on the gameboard, where X and O will be
+
+            for (int col = 1; col < 4; col++)
+            {
+                for (int row = 1; row < 4; row++)
+                {
+                    board[row, col] = ' ';
+
+                }
+            }
+        }
+
+        private static void Print(char[,] board)
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("< TRIPS  TRAPS  TRULL >");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine(" ");
+            Console.WriteLine("     |  1  |  2  |  3");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("  1  |  " + board[1, 1] + "  |  " + board[1, 2] + "  |  " + board[1, 3]);
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("  2  |  " + board[2, 1] + "  |  " + board[2, 2] + "  |  " + board[2, 3]);
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("  3  |  " + board[3, 1] + "  |  " + board[3, 2] + "  |  " + board[3, 3]);
+            Console.WriteLine(" ");
+        }
+    }
+}
